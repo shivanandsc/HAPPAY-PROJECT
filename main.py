@@ -13,7 +13,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 
-##Cafe TABLE Configuration
+##Author TABLE Configuration
 class Author(db.Model):
     Author_ID = db.Column(db.Integer, primary_key=True)
     Name = db.Column(db.String(250), unique=True, nullable=False)
