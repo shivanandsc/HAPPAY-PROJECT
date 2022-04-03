@@ -143,13 +143,26 @@ def searchBook():
 @app.route("/getMostSoldBookInCategory", methods=["POST","GET"])
 def getMostSoldBookInCategory():
   sold_count=0
+  mostsold_book=0
   category= request.args.get("category")
   Book_details = db.session.query(Book).all()
   for book in Book_details:
-    
+    if book.category_Id==category and int(book.Sold_Count)>int(sold_count):     
+      sold_count=book.Sold_Count
+      mostsold_book=book
+  if len(Book_details)!=0:
+    return jsonify(response={"success": (mostsold_book.Title+"  "+mostsold_book.Sold_Count)})
+  else:   
+    return jsonify(response={"unsuccess":'add books'})
 
 
-
+@app.route("/getAllAuthorName", methods=["POST","GET"])
+def getAllAuthorName():
+  Author_details = db.session.query(Author).all()
+  all_authors=[]
+  for author in Author_details:
+    all_authors.append(author.Name)
+  return jsonify(response={"success":all_authors })
 
 
 
