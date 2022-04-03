@@ -40,7 +40,7 @@ db.create_all()
 
 @app.route("/")
 def home():
-    return 'hi'
+    return 'Welcome to HAPPAY project'
 
 @app.route("/addAnAuthor", methods=["POST","GET"])
 def addAnAuthor(): 
